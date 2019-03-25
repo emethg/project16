@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container login-container ">
+        <h3>Login for Form 1</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            <div class="form-group">
+                <a href="#" class="ForgetPwd">Forget Password?</a>
+            </div>
+        </form>
+</div>
+{% endblock %}
