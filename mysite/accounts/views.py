@@ -44,14 +44,12 @@ def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():
-            print("pass1")
             form.save()
             update_session_auth_hash(request, form.user)
             return redirect('/accounts/profile')
         else:
             redirect('/account/change-password')
     else:
-        print("pass1")
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
