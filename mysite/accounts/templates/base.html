@@ -46,10 +46,12 @@
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
                         <li class="scroll active"><a href="/">Home</a></li>
+                        {% if request.path == '/' or request.path == '/accounts/'%}
                         <li class="scroll"><a href="#services">Service</a></li>
                         <li class="scroll"><a href="#about">About Us</a></li>
                         <li class="scroll"><a href="#meet-team">Team</a></li>
                         <li class="scroll"><a href="#get-in-touch">Contact</a></li>
+                        {% endif %}
                         {% if user.is_authenticated %}
                             <li class="scroll"><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
