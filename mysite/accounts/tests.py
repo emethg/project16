@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm
 from django.contrib.auth.forms import PasswordChangeForm
@@ -104,3 +104,13 @@ class ChangePasswordTest(TestCase):
         form = PasswordChangeForm(user, data)
         self.assertTrue(form.is_valid())
 
+
+class LogoutTest(TestCase):
+
+    def test_logout(self):
+        self.client = Client()
+        self.client.login(username='emeth', password='E123456g')
+        response1 = self.client.get('/profile', follow=True)
+        self.client.logout()
+        response2 = self.client.get('/profile', follow=True)
+        self.assertNotEqual(response1, response2)

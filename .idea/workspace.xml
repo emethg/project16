@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d04236a-d259-4894-b50d-fdf752d14bb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mysite/accounts/static/profile/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/animated-number/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/cta2/cta2-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/testimonial/01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/testimonial/02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/testimonial/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/static/images/work-process/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accounts/templates/accounts/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysite/accounts/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accounts/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/accounts/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/accounts/tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/mysite/accounts/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="77" />
+              <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -48,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/accounts/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
-              <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+              <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -57,31 +47,21 @@
         <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/slider/bg1.jpg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/accounts/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="73" selection-start-line="73" selection-end-line="73" selection-end-column="35" />
+            <state relative-caret-position="97">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/slider/bg2.jpg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -94,22 +74,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html">
+        <entry file="file://$PROJECT_DIR$/mysite/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16929">
-              <caret line="1064" lean-forward="true" selection-start-line="1064" selection-end-line="1064" />
+            <state relative-caret-position="323">
+              <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
               <folding>
-                <element signature="e#15624#15629#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mysite/accounts/static/profile/style.css">
+        <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="272">
+              <caret line="1064" selection-start-line="1064" selection-end-line="1064" />
             </state>
           </provider>
         </entry>
@@ -174,12 +154,12 @@
         <option value="$PROJECT_DIR$/mysite/accounts/templates/accounts/home.html" />
         <option value="$PROJECT_DIR$/mysite/accounts/forms.py" />
         <option value="$PROJECT_DIR$/mysite/accounts/views.py" />
-        <option value="$PROJECT_DIR$/mysite/accounts/tests.py" />
         <option value="$PROJECT_DIR$/mysite/accounts/static/profile/profile.js" />
         <option value="$PROJECT_DIR$/mysite/accounts/static/profile/style.css" />
         <option value="$PROJECT_DIR$/mysite/accounts/templates/base.html" />
         <option value="$PROJECT_DIR$/mysite/accounts/templates/accounts/login.html" />
         <option value="$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html" />
+        <option value="$PROJECT_DIR$/mysite/accounts/tests.py" />
       </list>
     </option>
   </component>
@@ -410,7 +390,7 @@
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49852508" visible="true" weight="0.1963434" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49852508" visible="true" weight="0.21860096" />
       <window_info id="Structure" order="1" sideWeight="0.5014749" side_tool="true" weight="0.3351178" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -421,7 +401,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26642984" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.5008881" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -628,8 +608,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accounts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="323">
+          <caret line="54" column="69" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
@@ -662,13 +642,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/profile/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="130" column="26" selection-start-line="130" selection-start-column="26" selection-end-line="130" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/profile/profile.js" />
     <entry file="file://$PROJECT_DIR$/mysite/accounts/static/profile/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -676,41 +650,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/animated-number/bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/cta2/cta2-bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/01.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/02.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/animated-number/bg.jpg" />
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/cta2/cta2-bg.jpg" />
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/01.jpg" />
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/02.jpg" />
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/testimonial/bg.jpg" />
     <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/slider/bg2.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/slider/bg1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/work-process/bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/accounts/static/images/work-process/bg.jpg" />
     <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accounts/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="77" />
+          <caret line="12" column="63" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -734,24 +696,21 @@
     <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/accounts/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
-          <caret line="50" column="30" lean-forward="true" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accounts/templates/accounts/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16929">
-          <caret line="1064" lean-forward="true" selection-start-line="1064" selection-end-line="1064" />
-          <folding>
-            <element signature="e#15624#15629#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="1064" selection-start-line="1064" selection-end-line="1064" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysite/accounts/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="73" selection-start-line="73" selection-end-line="73" selection-end-column="35" />
+        <state relative-caret-position="97">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
