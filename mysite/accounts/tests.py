@@ -104,7 +104,10 @@ class ChangePasswordTest(TestCase):
         form = PasswordChangeForm(user, data)
         self.assertTrue(form.is_valid())
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> test
 class LogoutTest(TestCase):
 
     def test_logout(self):
