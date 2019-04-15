@@ -20,6 +20,7 @@ class RegistrationFormTests(TestCase):
         comment = form.save()
         self.assertEqual(comment.username, "emeth")
         self.assertEqual(comment.email, "emeth@gmail.com")
+        # test
 
     def test_registration_form_invalid(self):
         data = {'username': 'emeth',
