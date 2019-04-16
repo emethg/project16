@@ -20,3 +20,11 @@ def create_profile(sender, **kwargs):
 
 
 post_save.connect(create_profile, sender=User)
+
+
+class Food(models.Model):
+    name = models.CharField(max_length=100,default='')
+    description = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.name
