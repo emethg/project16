@@ -22,7 +22,7 @@ def create_profile(sender, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 
-class Food(models.Model):
+class Dish(models.Model):
     name = models.CharField(max_length=100,default='')
     description = models.CharField(max_length=100, default='')
 

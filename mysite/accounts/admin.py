@@ -1,13 +1,13 @@
 from django.contrib import admin
 from .models import UserProfile
-from .models import Food
+from .models import Dish
 from .models import Tip
 
 # Register your models here.
 admin.site.register(UserProfile)
 
 
-class FoodAdmin(admin.ModelAdmin):
+class DishAdmin(admin.ModelAdmin):
 
     def save_form(self, request, form, change):
         """
@@ -28,7 +28,7 @@ class FoodAdmin(admin.ModelAdmin):
         """
         formset.save()
 
-admin.site.register(Food, FoodAdmin)
+admin.site.register(Dish, DishAdmin)
 
 
 class TipAdmin(admin.ModelAdmin):
