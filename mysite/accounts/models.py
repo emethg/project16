@@ -11,12 +11,20 @@ class UserProfile(models.Model):
     phone = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.username
+      return self.user.username
 
 
-def create_profile(sender, **kwargs):
+def create_profile (sender, **kwargs):
     if kwargs['created']:
         user_profile = UserProfile.objects.create(user = kwargs['instance'])
+
+class SportActivity (models.Model):
+    activity_name=models.CharField(max_length=50, default='')
+    description = models.CharField(max_length=1000, default='')
+    time= models.DurationField()
+
+    def __str__(self):
+        return self.activity_name
 
 
 post_save.connect(create_profile, sender=User)
