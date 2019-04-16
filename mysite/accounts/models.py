@@ -28,3 +28,11 @@ class Food(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Tip(models.Model):
+    tip = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.tip
