@@ -32,6 +32,7 @@ def view_profile(request):
 
 @login_required()
 def view_items(request):
+    '''views for item list'''
     data = Product.objects.all().order_by('?')
     args = {'data': data}
     return render(request, 'accounts/items_list.html', args)
