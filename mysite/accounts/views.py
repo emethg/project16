@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .forms import RegistrationForm, EditProfileForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from .models import Product
 
 
 def home(request):
@@ -27,6 +28,13 @@ def register(request):
 def view_profile(request):
     args = {'user': request.user}
     return render(request, 'accounts/profile.html', args)
+
+
+@login_required()
+def view_items(request):
+    data = Product.objects.all().order_by('?')
+    args = {'data': data}
+    return render(request, 'accounts/items_list.html', args)
 
 
 def edit_profile(request):
@@ -54,3 +62,5 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
+
+
