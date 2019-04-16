@@ -33,6 +33,12 @@ admin.site.register(Food, FoodAdmin)
 
 class TipAdmin(admin.ModelAdmin):
 
+    def delete_model(self, request, obj):
+        """
+        Given a model instance delete it from the database.
+        """
+        obj.delete()
+
     def save_form(self, request, form, change):
         """
         Given a ModelForm return an unsaved instance. ``change`` is True if
