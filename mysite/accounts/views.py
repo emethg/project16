@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, EditProfileForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Product
+from django.contrib.auth.views import LoginView
 
 
 def home(request):

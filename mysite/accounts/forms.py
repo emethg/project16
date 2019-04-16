@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 
 
 class RegistrationForm(UserCreationForm):
@@ -36,3 +36,14 @@ class EditProfileForm(UserChangeForm):
             'last_name',
             'password'
         )
+
+
+class CustomAuthentificationForm(AuthenticationForm):
+
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            print('inactive')
+            raise forms.ValidationError(
+                self.error_messages['inactive'],
+                code='inactive',
+            )
