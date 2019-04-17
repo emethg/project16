@@ -119,54 +119,6 @@ class LogoutTest(TestCase):
         self.assertNotEqual(response1, response2)
 
 
-class ProductAdminTest(TestCase):
-
-    def setUp(self):
-        self.product1 = Product.objects.create(
-            name_product='test',
-            description='test description',
-            price=25
-        )
-        self.site = AdminSite()
-
-    def test_add(self):
-        self.assertEqual(self.product1.id, 1)
-
-    def test_delete(self):
-        product2 = Product.objects.create(
-            name_product='test',
-            description='test description',
-            price=25
-        )
-        product3 = Product.objects.create(
-            name_product='test',
-            description='test description',
-            price=25
-        )
-        Product.objects.get(id=2).delete()
-        with self.assertRaises(ObjectDoesNotExist):
-            Product.objects.get(id=2)
-
-    def test_changefields(self):
-        product = Product.objects.create(
-            name_product='test',
-            description='test description',
-            price=25
-        )
-        product_change = Product.objects.create(
-            name_product='change',
-            description='test description',
-            price=25
-        )
-        form = ProductForm(instance=product)
-        form.fields['name_product'] = 'change'
-        print(form.fields['name_product'])
-        if form.is_valid():
-            form.save()
-        self.assertEqual('change', form.fields['name_product'])
-
-
-
 
 
 
