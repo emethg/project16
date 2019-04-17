@@ -7,7 +7,7 @@ from .models import Product
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
-
+    #password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
         fields = ('username',
