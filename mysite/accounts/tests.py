@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, ProductForm
 from django.contrib.auth.forms import PasswordChangeForm
-from .models import Product
+from .models import Product, Dish
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -119,6 +119,26 @@ class LogoutTest(TestCase):
         self.assertNotEqual(response1, response2)
 
 
+class DeleteUserTest(TestCase):
+
+    def setUp(self):
+        data = {'username': 'emeth',
+                'password1': 'E123456g',
+                'password2': 'E123456g',
+                'email': 'emeth@gmail.com'
+                }
+        form = RegistrationForm(data)
+        self.assertTrue(form.is_valid())
+        comment = form.save()
+        self.assertEqual(comment.username, "emeth")
+        self.assertEqual(comment.email, "emeth@gmail.com")
+
+    def test_delete(self):
+        User.objects.get(id=1).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            User.objects.get(id=1)
+
+
 class ProductAdminTest(TestCase):
 
     def setUp(self):
@@ -160,10 +180,32 @@ class ProductAdminTest(TestCase):
         )
         form = ProductForm(instance=product)
         form.fields['name_product'] = 'change'
-        print(form.fields['name_product'])
         if form.is_valid():
             form.save()
         self.assertEqual('change', form.fields['name_product'])
 
 
+class DishAdminTest(TestCase):
+
+    def setUp(self):
+        self.product1 = Dish.objects.create(
+            name='test',
+            description='test description',
+        )
+        self.site = AdminSite()
+
+    def test_changefields(self):
+        dish = Dish.objects.create(
+            name='test',
+            description='test description',
+        )
+        dish_change = Dish.objects.create(
+            name='change',
+            description='test description',
+        )
+        form = ProductForm(instance=dish)
+        form.fields['name'] = 'change'
+        if form.is_valid():
+            form.save()
+        self.assertEqual('change', form.fields['name'])
 
