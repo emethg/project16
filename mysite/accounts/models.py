@@ -20,3 +20,19 @@ def create_profile(sender, **kwargs):
 
 
 post_save.connect(create_profile, sender=User)
+
+
+class Dish(models.Model):
+    name = models.CharField(max_length=100,default='')
+    description = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.name
+
+
+class Tip(models.Model):
+    tip = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.tip
