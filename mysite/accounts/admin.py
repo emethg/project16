@@ -6,8 +6,9 @@ from django.contrib import admin, auth
 from django.db import router
 from django.db.models.deletion import Collector
 
-from .models import UserProfile, Product, User
+from .models import UserProfile, Product, User, TipStudy
 from .models import UserProfile, SportActivity
+
 
 class SportActivityAdmin (admin.ModelAdmin):
     list_display = ('activity_name', 'description', 'time')
@@ -55,7 +56,6 @@ class SportActivityAdmin (admin.ModelAdmin):
 # Register your models here.
 admin.site.register(UserProfile)
 admin.site.register(SportActivity, SportActivityAdmin)
-
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -177,6 +177,22 @@ class TipAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tip, TipAdmin)
+
+
+class TipStudyAdmin(admin.ModelAdmin):
+
+    def delete_model(self, request, obj):
+        """
+        Given a model instance delete it from the database.
+        """
+        obj.delete()
+
+    
+
+
+admin.site.register(TipStudy, TipStudyAdmin)
+
+
 
 import copy
 import json
