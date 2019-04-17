@@ -1,3 +1,5 @@
+import datetime
+
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, ProductForm
@@ -229,11 +231,28 @@ class DishAdminTest(TestCase):
 class SportAdminTest(TestCase):
 
     def setUp(self):
-        self.sport1 = .SportActivity.create(
+        self.sport1 = SportActivity.objects.create(
             activity_name='test',
             description='test description',
+            time=datetime.timedelta(days=20, hours=10),
         )
         self.site = AdminSite()
 
     def test_add(self):
         self.assertEqual(self.sport1.id, 1)
+
+    def test_delete(self):
+        sport2 = SportActivity.objects.create(
+            activity_name='test',
+            description='test description',
+            time=datetime.timedelta(days=20, hours=10)
+        )
+        sport3 = SportActivity.objects.create(
+            activity_name='test',
+            description='test description',
+            time=datetime.timedelta(days=20, hours=10)
+        )
+        SportActivity.objects.get(id=2).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            SportActivity.objects.get(id=2)
+
