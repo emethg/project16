@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, ProductForm
 from django.contrib.auth.forms import PasswordChangeForm
-from .models import Product, Dish, SportActivity
+from .models import Product, Dish, SportActivity, TipStudy
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -263,7 +263,7 @@ class SportAdminTest(TestCase):
             time=datetime.timedelta(days=20, hours=10)
         )
         sport_change = SportActivity.objects.create(
-            activity_name='test',
+            activity_name='change',
             description='test description',
             time=datetime.timedelta(days=20, hours=10)
         )
@@ -272,3 +272,27 @@ class SportAdminTest(TestCase):
         if form.is_valid():
             form.save()
         self.assertEqual('change', form.fields['activity_name'])
+
+
+class StudyTipAdminTest(TestCase):
+    def setUp(self):
+        self.sport1 = TipStudy.objects.create(
+            tip='test',
+            description='test description',
+        )
+        self.site = AdminSite()
+
+    def test_changefields(self):
+        study = TipStudy.objects.create(
+            tip='test',
+            description='test description',
+        )
+        study_change = TipStudy.objects.create(
+            tip='change',
+            description='test description',
+        )
+        form = ProductForm(instance=study)
+        form.fields['tip'] = 'change'
+        if form.is_valid():
+            form.save()
+        self.assertEqual('change', form.fields['tip'])
