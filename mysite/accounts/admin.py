@@ -676,7 +676,7 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
     def has_add_permission(self, request):
         """
         Return True if the given request has permission to add an object.
-        Can be overridden by the user in subclasses.
+        Can be overridden by the user in subclasses. From here all function for permission
         """
         opts = self.opts
         codename = get_permission_codename('add', opts)
