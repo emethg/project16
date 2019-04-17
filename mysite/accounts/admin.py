@@ -180,7 +180,7 @@ admin.site.register(Tip, TipAdmin)
 
 
 class TipStudyAdmin(admin.ModelAdmin):
-
+    #delete
     def delete_model(self, request, obj):
         """
         Given a model instance delete it from the database.
