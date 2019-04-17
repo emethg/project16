@@ -299,3 +299,16 @@ class StudyTipAdminTest(TestCase):
 
     def test_add(self):
         self.assertEqual(self.study1.id, 1)
+
+    def test_delete(self):
+        study2 = TipStudy.objects.create(
+            tip='test',
+            description='test description',
+        )
+        study3 = TipStudy.objects.create(
+            tip='test',
+            description='test description',
+        )
+        TipStudy.objects.get(id=2).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            TipStudy.objects.get(id=2)
