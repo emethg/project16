@@ -12,12 +12,54 @@ from .models import UserProfile, Product, User
 admin.site.register(UserProfile)
 
 
-class DishAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
 
     list_display = ('name_product', 'price', 'description')
     list_filter = ('name_product', 'price')
 
+    def delete_model(self, request, obj):
+        """
+        Given a model instance delete it from the database.
+        """
+        obj.delete()
+
+    def get_model_perms(self, request):
+        """
+        Return a dict of all perms for this model. This dict has the keys
+        ``add``, ``change``, ``delete``, and ``view`` mapping to the True/False
+        for each of those actions.
+        """
+        return {
+            'add': self.has_add_permission(request),
+            'change': self.has_change_permission(request),
+            'delete': self.has_delete_permission(request),
+            'view': self.has_view_permission(request),
+        }
+
+    def save_form(self, request, form, change):
+        """
+        Given a ModelForm return an unsaved instance. ``change`` is True if
+        the object is being changed, and False if it's being added.
+        """
+        return form.save(commit=False)
+
+    def save_model(self, request, obj, form, change):
+        """
+        Given a model instance save it to the database.
+        """
+        obj.save()
+
+    def save_formset(self, request, form, formset, change):
+        """
+        Given an inline formset save it to the database.
+        """
+        formset.save()
+
+
+admin.site.register(Product, ProductAdmin)
+
+
+class DishAdmin(admin.ModelAdmin):
     def delete_model(self, request, obj):
         """
         Given a model instance delete it from the database.
@@ -68,7 +110,7 @@ class TipAdmin(admin.ModelAdmin):
         """
         obj.delete()
 
-        def save_form(self, request, form, change):
+    def save_form(self, request, form, change):
         """
         Given a ModelForm return an unsaved instance. ``change`` is True if
         the object is being changed, and False if it's being added.
@@ -86,7 +128,9 @@ class TipAdmin(admin.ModelAdmin):
         Given an inline formset save it to the database.
         """
         formset.save()
-admin.site.register(Product, ProductAdmin)
+
+
+admin.site.register(Tip, TipAdmin)
 
 import copy
 import json
@@ -1152,7 +1196,6 @@ class ModelAdmin(BaseModelAdmin):
 
         messages.add_message(request, level, message, extra_tags=extra_tags, fail_silently=fail_silently)
 
-
     def delete_model(self, request, obj):
         """
         Given a model instance delete it from the database.
@@ -1162,8 +1205,6 @@ class ModelAdmin(BaseModelAdmin):
     def delete_queryset(self, request, queryset):
         """Given a queryset, delete it from the database."""
         queryset.delete()
-
-    
 
     def save_related(self, request, form, formsets, change):
         """
@@ -2236,4 +2277,6 @@ class StackedInline(InlineModelAdmin):
 
 class TabularInline(InlineModelAdmin):
     template = 'admin/edit_inline/tabular.html'
+
+
 

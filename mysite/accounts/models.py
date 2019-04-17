@@ -30,12 +30,6 @@ class Dish(models.Model):
         return self.name
 
 
-class Tip(models.Model):
-    tip = models.CharField(max_length=100, default='')
-    description = models.CharField(max_length=100, default='')
-
-    def __str__(self):
-        return self.tip
 class Product(models.Model):
     name_product = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=1000, default='')
@@ -43,3 +37,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name_product
+
+
+class Tip(models.Model):
+    tip = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.tip
+
