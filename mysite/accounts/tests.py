@@ -209,3 +209,16 @@ class DishAdminTest(TestCase):
             form.save()
         self.assertEqual('change', form.fields['name'])
 
+    def test_delete(self):
+        dish2 = Dish.objects.create(
+            name='test',
+            description='test description',
+        )
+        dish3 = Dish.objects.create(
+            name='test',
+            description='test description',
+        )
+        Dish.objects.get(id=2).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            Dish.objects.get(id=2)
+
