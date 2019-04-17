@@ -121,26 +121,6 @@ class LogoutTest(TestCase):
         self.assertNotEqual(response1, response2)
 
 
-class DeleteUserTest(TestCase):
-
-    def setUp(self):
-        data = {'username': 'emeth',
-                'password1': 'E123456g',
-                'password2': 'E123456g',
-                'email': 'emeth@gmail.com'
-                }
-        form = RegistrationForm(data)
-        self.assertTrue(form.is_valid())
-        comment = form.save()
-        self.assertEqual(comment.username, "emeth")
-        self.assertEqual(comment.email, "emeth@gmail.com")
-
-    def test_delete(self):
-        User.objects.get(id=1).delete()
-        with self.assertRaises(ObjectDoesNotExist):
-            User.objects.get(id=1)
-
-
 class ProductAdminTest(TestCase):
 
     def setUp(self):
@@ -312,3 +292,23 @@ class StudyTipAdminTest(TestCase):
         TipStudy.objects.get(id=2).delete()
         with self.assertRaises(ObjectDoesNotExist):
             TipStudy.objects.get(id=2)
+
+            
+class DeleteUserTest(TestCase):
+
+    def setUp(self):
+        data = {'username': 'emeth',
+                'password1': 'E123456g',
+                'password2': 'E123456g',
+                'email': 'emeth@gmail.com'
+                }
+        form = RegistrationForm(data)
+        self.assertTrue(form.is_valid())
+        comment = form.save()
+        self.assertEqual(comment.username, "emeth")
+        self.assertEqual(comment.email, "emeth@gmail.com")
+
+    def test_delete(self):
+        User.objects.get(id=1).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            User.objects.get(id=1)

