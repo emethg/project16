@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from django.forms import ModelForm
+from .models import Product
 
 
 class RegistrationForm(UserCreationForm):
@@ -47,3 +49,11 @@ class CustomAuthentificationForm(AuthenticationForm):
                 self.error_messages['inactive'],
                 code='inactive',
             )
+
+
+class ProductForm(ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ['name_product', 'description', 'price']
+

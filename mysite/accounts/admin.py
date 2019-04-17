@@ -14,7 +14,7 @@ admin.site.register(UserProfile)
 
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = ('name_product', 'price', 'description')
+    list_display = ('id', 'name_product', 'price', 'description')
     list_filter = ('name_product', 'price')
 
     def delete_model(self, request, obj):

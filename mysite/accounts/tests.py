@@ -1,7 +1,10 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProductForm
 from django.contrib.auth.forms import PasswordChangeForm
+from .models import Product
+from django.contrib.admin.sites import AdminSite
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your tests here.
@@ -75,10 +78,10 @@ class ChangePasswordTest(TestCase):
 
     def setUp(self):
         self.data = {'username': 'yaniv',
-                'password1': 'Y123456b',
-                'password2': 'Y123456b',
-                'email': 'yaniv@gmail.com'
-                }
+                     'password1': 'Y123456b',
+                     'password2': 'Y123456b',
+                     'email': 'yaniv@gmail.com'
+                     }
         form = RegistrationForm(self.data)
         self.assertTrue(form.is_valid())
         form.save()
@@ -114,3 +117,50 @@ class LogoutTest(TestCase):
         self.client.logout()
         response2 = self.client.get('/profile', follow=True)
         self.assertNotEqual(response1, response2)
+
+
+class ModelAdminTest(TestCase):
+
+    def setUp(self):
+        self.product1 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        self.site = AdminSite()
+
+    def test_add(self):
+        self.assertEqual(self.product1.id, 1)
+
+    def test_delete(self):
+        product2 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        product3 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        Product.objects.get(id=2).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            Product.objects.get(id=2)
+
+    def test_changefields(self):
+        product = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        product_change = Product.objects.create(
+            name_product='change',
+            description='test description',
+            price=25
+        )
+        p = Product.objects.get(id=2)
+        form = ProductForm(p)
+        if form.is_valid():
+            save_p = form.save()
+        print(save_p.name_product)
+        #self.assertEqual(p.name_product, 'change')
