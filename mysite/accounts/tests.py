@@ -158,9 +158,9 @@ class ModelAdminTest(TestCase):
             description='test description',
             price=25
         )
-        p = Product.objects.get(id=2)
-        form = ProductForm(p)
+        form = ProductForm(instance=product)
+        form.fields['name_product'] = 'change'
+        print(form.fields['name_product'])
         if form.is_valid():
-            save_p = form.save()
-        print(save_p.name_product)
-        #self.assertEqual(p.name_product, 'change')
+            form.save()
+        self.assertEqual('change', form.fields['name_product'])
