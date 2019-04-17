@@ -256,3 +256,19 @@ class SportAdminTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             SportActivity.objects.get(id=2)
 
+    def test_changefields(self):
+        sport = SportActivity.objects.create(
+            activity_name='test',
+            description='test description',
+            time=datetime.timedelta(days=20, hours=10)
+        )
+        sport_change = SportActivity.objects.create(
+            activity_name='test',
+            description='test description',
+            time=datetime.timedelta(days=20, hours=10)
+        )
+        form = ProductForm(instance=sport)
+        form.fields['activity_name'] = 'change'
+        if form.is_valid():
+            form.save()
+        self.assertEqual('change', form.fields['activity_name'])
