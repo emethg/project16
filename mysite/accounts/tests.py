@@ -276,7 +276,7 @@ class SportAdminTest(TestCase):
 
 class StudyTipAdminTest(TestCase):
     def setUp(self):
-        self.sport1 = TipStudy.objects.create(
+        self.study1 = TipStudy.objects.create(
             tip='test',
             description='test description',
         )
@@ -296,3 +296,6 @@ class StudyTipAdminTest(TestCase):
         if form.is_valid():
             form.save()
         self.assertEqual('change', form.fields['tip'])
+
+    def test_add(self):
+        self.assertEqual(self.study1.id, 1)
