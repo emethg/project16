@@ -36,3 +36,10 @@ class Tip(models.Model):
 
     def __str__(self):
         return self.tip
+class Product(models.Model):
+    name_product = models.CharField(max_length=100, default='')
+    description = models.CharField(max_length=1000, default='')
+    price = models.FloatField(default=0)
+
+    def __str__(self):
+        return self.name_product
