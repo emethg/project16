@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, ProductForm
 from django.contrib.auth.forms import PasswordChangeForm
-from .models import Product, Dish
+from .models import Product, Dish, SportActivity
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -225,3 +225,15 @@ class DishAdminTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Dish.objects.get(id=2)
 
+
+class SportAdminTest(TestCase):
+
+    def setUp(self):
+        self.sport1 = .SportActivity.create(
+            activity_name='test',
+            description='test description',
+        )
+        self.site = AdminSite()
+
+    def test_add(self):
+        self.assertEqual(self.sport1.id, 1)
