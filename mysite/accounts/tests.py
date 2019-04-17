@@ -188,11 +188,14 @@ class ProductAdminTest(TestCase):
 class DishAdminTest(TestCase):
 
     def setUp(self):
-        self.product1 = Dish.objects.create(
+        self.dish1 = Dish.objects.create(
             name='test',
             description='test description',
         )
         self.site = AdminSite()
+
+    def test_add(self):
+        self.assertEqual(self.dish1.id, 1)
 
     def test_changefields(self):
         dish = Dish.objects.create(
