@@ -132,5 +132,20 @@ class ProductAdminTest(TestCase):
     def test_add(self):
         self.assertEqual(self.product1.id, 1)
 
+    def test_delete(self):
+        product2 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        product3 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        Product.objects.get(id=2).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            Product.objects.get(id=2)
+
 
 
