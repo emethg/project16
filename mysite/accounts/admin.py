@@ -28,6 +28,7 @@ class DishAdmin(admin.ModelAdmin):
         """
         formset.save()
 
+
 admin.site.register(Dish, DishAdmin)
 
 
