@@ -119,7 +119,7 @@ class LogoutTest(TestCase):
         self.assertNotEqual(response1, response2)
 
 
-class ModelAdminTest(TestCase):
+class ProductAdminTest(TestCase):
 
     def setUp(self):
         self.product1 = Product.objects.create(
@@ -164,3 +164,21 @@ class ModelAdminTest(TestCase):
         if form.is_valid():
             form.save()
         self.assertEqual('change', form.fields['name_product'])
+
+
+class ProductAdminTest(TestCase):
+
+    def setUp(self):
+        self.product1 = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        self.site = AdminSite()
+
+    def test_add(self):
+        self.assertEqual(self.product1.id, 1)
+
+
+
+
