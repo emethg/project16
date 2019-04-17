@@ -147,5 +147,23 @@ class ProductAdminTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Product.objects.get(id=2)
 
+    def test_changefields(self):
+        product = Product.objects.create(
+            name_product='test',
+            description='test description',
+            price=25
+        )
+        product_change = Product.objects.create(
+            name_product='change',
+            description='test description',
+            price=25
+        )
+        form = ProductForm(instance=product)
+        form.fields['name_product'] = 'change'
+        print(form.fields['name_product'])
+        if form.is_valid():
+            form.save()
+        self.assertEqual('change', form.fields['name_product'])
+
 
 
