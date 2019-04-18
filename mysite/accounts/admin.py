@@ -2358,5 +2358,3 @@ class TabularInline(InlineModelAdmin):
     template = 'admin/edit_inline/tabular.html'
 
 
-
-         User.objects.get(request).delete()

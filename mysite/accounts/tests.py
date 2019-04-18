@@ -293,7 +293,7 @@ class StudyTipAdminTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             TipStudy.objects.get(id=2)
 
-            
+
 class DeleteUserTest(TestCase):
 
     def setUp(self):
