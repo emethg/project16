@@ -1,18 +1,27 @@
-#!/usr/bin/groovy
-
-node {
-  // If you are having issues with your project not getting updated, 
-  // try uncommenting the following lines.
-  //stage 'Checkout'
-  //checkout scm
-  //sh 'git submodule update --init --recursive'
-
-  stage 'Update Python Modules'
-  // Create a virtualenv in this folder, and install or upgrade packages
-  // specified in requirements.txt; https://pip.readthedocs.io/en/1.1/requirements.html
-  sh 'virtualenv env && source env/bin/activate && pip install --upgrade -r requirements.txt'
-  
-  stage 'Test'
-  // Invoke Django's tests
-  sh 'source env/bin/activate && python ./manage.py runtests'
+pipeline {
+  agent { docker { image 'python:3.7.2' } }
+  environment {HOME = '/tmp'}
+  stages {
+    // First stage , get files from your GitHub repository.
+    stage('Git'){
+        steps{
+            checkout scm
+        }
+    }
+    stage('build') {
+      steps {
+        sh 'pip install --user --no-cache-dir -r requirements.txt'
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'python tests.py'
+      }
+      post {
+        always {
+          junit 'test-reports/*.xml'
+        }
+      }
+    }
+  }
 }
