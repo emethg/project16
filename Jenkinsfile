@@ -1,43 +1,18 @@
-pipeline {
-  agent { docker { image 'python:3.7.2' } }
-  stages {
-  stage('Git') { // Get some code from a GitHub repository
-      steps{
-        withEnv(["HOME=${env.WORKSPACE}"]) {
-          git 'https://github.com/emethg/project16'
-        }
-      }
-  }
-   
-  stage('Requirements'){
-    steps{
-      withEnv(["HOME=${env.WORKSPACE}"]) {
-        sh 'pip3.7 install --user -U -r requirements.txt'
-      }
-    }
-  }
-    
-  stage('Run Django'){
-    steps{
-      withEnv(["HOME=${env.WORKSPACE}"]) {
-        sh "python3.7 manage.py runserver &"
-      }
-    }
-  }
-  stage('Run Tests'){
-    steps{
-      withEnv(["HOME=${env.WORKSPACE}"]) {
-        sh"""
-        cd ${WORKSPACE}
-        python manage.py test
-        """
-              }
-          }
-  }
-  stage('Results') {
-    steps{
-      junit allowEmptyResults: true, testResults: '**/StartEasy/*.xml'  
-    }
-  }    
-  }
+#!/usr/bin/groovy
+
+node {
+  // If you are having issues with your project not getting updated, 
+  // try uncommenting the following lines.
+  //stage 'Checkout'
+  //checkout scm
+  //sh 'git submodule update --init --recursive'
+
+  stage 'Update Python Modules'
+  // Create a virtualenv in this folder, and install or upgrade packages
+  // specified in requirements.txt; https://pip.readthedocs.io/en/1.1/requirements.html
+  sh 'virtualenv env && source env/bin/activate && pip install --upgrade -r requirements.txt'
+  
+  stage 'Test'
+  // Invoke Django's tests
+  sh 'source env/bin/activate && python ./manage.py runtests'
 }
