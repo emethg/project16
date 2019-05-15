@@ -4,7 +4,7 @@ pipeline {
   stage('Git') { // Get some code from a GitHub repository
       steps{
         withEnv(["HOME=${env.WORKSPACE}"]) {
-          git 'https://github.com/'
+          git 'https://github.com/emethg/project16'
         }
       }
   }
