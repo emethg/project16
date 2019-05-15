@@ -1,27 +1,43 @@
 pipeline {
   agent { docker { image 'python:3.7.2' } }
-  environment {HOME = '/tmp'} 
   stages {
-    // First stage , get files from your GitHub repository.
-    stage('Git'){
-        steps{
-            checkout scm
-        }
-    }
-    stage('build') {
-      steps {
-        sh 'pip install --user --no-cache-dir -r requirements.txt'
-      }
-    }
-    stage('test') {
-      steps {
-        sh 'python tests.py'
-      }
-      post {
-        always {
-          junit 'test-reports/*.xml'
+  stage('Git') { // Get some code from a GitHub repository
+      steps{
+        withEnv(["HOME=${env.WORKSPACE}"]) {
+          git 'https://github.com/'
         }
       }
+  }
+   
+  stage('Requirements'){
+    steps{
+      withEnv(["HOME=${env.WORKSPACE}"]) {
+        sh 'pip3.7 install --user -U -r requirements.txt'
+      }
     }
+  }
+    
+  stage('Run Django'){
+    steps{
+      withEnv(["HOME=${env.WORKSPACE}"]) {
+        sh "python3.7 manage.py runserver &"
+      }
+    }
+  }
+  stage('Run Tests'){
+    steps{
+      withEnv(["HOME=${env.WORKSPACE}"]) {
+        sh"""
+        cd ${WORKSPACE}
+        python manage.py test
+        """
+              }
+          }
+  }
+  stage('Results') {
+    steps{
+      junit allowEmptyResults: true, testResults: '**/StartEasy/*.xml'  
+    }
+  }    
   }
 }
