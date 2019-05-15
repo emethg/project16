@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'webpush',
     'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,6 +100,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": "BJIvj3IiGFa32vJ5tPRbyQtgxyJxP4D37AgImirz2KINnbMW70S5g2JMWUkpB1fi9uSKus_4ZUmrN7ow8VTte4E",
+   "VAPID_PRIVATE_KEY": "jnS4xElAq9tM5ylu5dQ7lYZedoRcusYOb1M9Z98T1aM",
+   "VAPID_ADMIN_EMAIL": "genahemeth@gmail.com.com"
+}
 
 
 # Internationalization
