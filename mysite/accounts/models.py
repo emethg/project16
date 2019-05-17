@@ -10,19 +10,21 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=100, default='')
     website = models.URLField(default='')
     phone = models.IntegerField(default=0)
+    notification = models.BooleanField(default=False)
 
     def __str__(self):
-      return self.user.username
+        return self.user.username
 
 
-def create_profile (sender, **kwargs):
+def create_profile(sender, **kwargs):
     if kwargs['created']:
-        user_profile = UserProfile.objects.create(user = kwargs['instance'])
+        user_profile = UserProfile.objects.create(user=kwargs['instance'])
 
-class SportActivity (models.Model):
-    activity_name=models.CharField(max_length=50, default='')
+
+class SportActivity(models.Model):
+    activity_name = models.CharField(max_length=50, default='')
     description = models.CharField(max_length=1000, default='')
-    time= models.DurationField()
+    time = models.DurationField()
 
     def __str__(self):
         return self.activity_name
@@ -32,7 +34,7 @@ post_save.connect(create_profile, sender=User)
 
 
 class Dish(models.Model):
-    name = models.CharField(max_length=100,default='')
+    name = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
 
     def __str__(self):
@@ -49,8 +51,14 @@ class Product(models.Model):
 
 
 class Tip(models.Model):
+    user = models.ManyToManyField(User)
     tip = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
+    link = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name='users'
+    )
 
     def __str__(self):
         return self.tip
@@ -62,4 +70,3 @@ class TipStudy(models.Model):
 
     def __str__(self):
         return self.tip
-
