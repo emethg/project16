@@ -8,19 +8,6 @@
 
 {% block body %}
 
-<!--
-<div class="container">
-    <p>
-        User : {{ user }}
-    </p>
-    <p>
-        First Name : {{ user.first_name }}
-    </p>
-</div>-->
-
-
-
-
 <div id="user-profile-2" class="user-profile">
 		<div class="tabbable">
 			<ul class="nav nav-tabs padding-18">
@@ -115,6 +102,15 @@
 
 									<div class="profile-info-value">
 										<span>{{user.last_activity}}</span>
+									</div>
+								</div>
+
+								<div class="profile-info-row">
+									<div class="profile-info-name">Notification</div>
+									<div class="profile-info-value">
+										<form method="get" action="{% url 'activate_notification' %}">
+   											<input type="submit" class="btn" value="Click" name="print_btn">
+										</form>
 									</div>
 								</div>
 							</div>
