@@ -17,4 +17,6 @@ urlpatterns = [
     path('reset_password/complete', PasswordResetConfirmView.as_view(), name='password_reset_complete'),
     path('items_list/', views.view_items, name='list_items'),
     path('profile/click', views.activate_notification, name='activate_notification'),
+    path('profile/list_activity', views.list_activity_log, name='list_activity_log'),
+    path('profile/<name>', views.information, name='information'),
 ]
