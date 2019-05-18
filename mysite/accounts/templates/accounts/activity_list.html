@@ -1,32 +1,9 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-
-    <div id="products" class="row list-group">
+    <li>
         {% for e in data %}
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        {{e.name_product }}</h4>
-                    <p class="group inner list-group-item-text">
-                        {{e.description}}</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                {{e.price}}$</p>
-                        </div>
-                        <!--
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
-                        </div>-->
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="{% url 'information' name=e.activity_name %}">{{e.activity_name}}</a>
         {% endfor %}
-    </div>
-</div>
+    </li>
 {% endblock %}
