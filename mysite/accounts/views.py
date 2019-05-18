@@ -81,7 +81,7 @@ def change_password(request):
         return render(request, 'accounts/change_password.html', args)
 
 
-@periodic_task(run_every=crontab(hour=7, minute=30, day_of_week="mon"))
+@periodic_task(run_every=crontab())
 def send_push(request):
     profile = request.user.get_profile()
     if profile.notification == 'True':
@@ -105,6 +105,8 @@ def send_push(request):
 def activate_notification(request):
     print('Hey comment tu vas')
     profile = request.user.userprofile
+    profile.notification = True
+    profile.save()
     #if profile.notification == 'true':
     return HttpResponse(profile.notification)
 
