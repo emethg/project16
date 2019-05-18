@@ -4,8 +4,20 @@ from django.contrib.auth.models import User
 from .forms import RegistrationForm, EditProfileForm
 from django.contrib.auth import update_session_auth_hash, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import Product
+from .models import Product, UserProfile, SportActivityNotification, SportActivity
 from django.contrib.auth.views import LoginView
+
+from django.http.response import JsonResponse, HttpResponse
+from django.views.decorators.http import require_GET, require_POST
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from webpush import send_user_notification
+
+import json
+
+from celery.schedules import crontab
+from celery.task import periodic_task
 
 
 def home(request):
@@ -68,4 +80,55 @@ def change_password(request):
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
 
+
+@periodic_task(run_every=crontab(hour=7, minute=30, day_of_week="mon"))
+def send_push(request):
+    profile = request.user.get_profile()
+    if profile.notification == 'True':
+        try:
+            body = request.body
+            data = json.loads(body)
+
+            if 'head' not in data or 'body' not in data or 'id' not in data:
+                return JsonResponse(status=400, data={"message": "Invalid data format"})
+
+            user_id = data['id']
+            user = get_object_or_404(User, pk=user_id)
+            payload = {'head': data['head'], 'body': data['body']}
+            send_user_notification(user=user, payload=payload, ttl=1000)
+
+            return JsonResponse(status=200, data={"message": "Web push successful"})
+        except TypeError:
+            return JsonResponse(status=500, data={"message": "An error occurred"})
+
+
+def activate_notification(request):
+    print('Hey comment tu vas')
+    profile = request.user.userprofile
+    #if profile.notification == 'true':
+    return HttpResponse(profile.notification)
+
+'''
+    if not profile.notification:
+        profile.notification = 'True'
+        profile.save()
+        print(request.user.userprofile.notification)
+        return HttpResponse("false")
+    else:
+        return HttpResponse("true")
+'''
+
+
+def list_activity_log(request):
+    # PROBLEM WITH LINK
+    data = request.user
+    al = data.sportactivitynotifications.all()
+    args = {'data': al}
+    return render(request, 'accounts/activity_list.html', args)
+
+
+def information(request, name):
+    data = SportActivity.objects.get(activity_name = name)
+    args = {'data': data}
+    return render(request, 'accounts/information.html', args)
 
