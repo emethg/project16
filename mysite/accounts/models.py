@@ -51,14 +51,8 @@ class Product(models.Model):
 
 
 class Tip(models.Model):
-    user = models.ManyToManyField(User)
     tip = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
-    link = models.ForeignKey(
-        UserProfile,
-        on_delete=models.CASCADE,
-        related_name='users'
-    )
 
     def __str__(self):
         return self.tip
@@ -70,3 +64,14 @@ class TipStudy(models.Model):
 
     def __str__(self):
         return self.tip
+
+
+class SportActivityNotification(models.Model):
+    activity_name = models.CharField(max_length=50, default='')
+    link = models.ForeignKey(User, related_name='sportactivitynotifications', on_delete=models.CASCADE )
+
+    def __str__(self):
+        return self.activity_name
+
+
+

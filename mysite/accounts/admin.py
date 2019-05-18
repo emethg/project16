@@ -7,10 +7,12 @@ from django.db import router
 from django.db.models.deletion import Collector
 
 from .models import UserProfile, Product, User, TipStudy
-from .models import UserProfile, SportActivity
+from .models import UserProfile, SportActivity, SportActivityNotification
+
+admin.site.register(SportActivityNotification)
 
 
-class SportActivityAdmin (admin.ModelAdmin):
+class SportActivityAdmin(admin.ModelAdmin):
     list_display = ('activity_name', 'description', 'time')
     list_filter = ('time', 'activity_name')
 
@@ -59,7 +61,6 @@ admin.site.register(SportActivity, SportActivityAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-
     list_display = ('id', 'name_product', 'price', 'description')
     list_filter = ('name_product', 'price')
 
@@ -180,7 +181,7 @@ admin.site.register(Tip, TipAdmin)
 
 
 class TipStudyAdmin(admin.ModelAdmin):
-    #delete
+    # delete
     def delete_model(self, request, obj):
         """
         Given a model instance delete it from the database.
@@ -208,8 +209,6 @@ class TipStudyAdmin(admin.ModelAdmin):
 
 
 admin.site.register(TipStudy, TipStudyAdmin)
-
-
 
 import copy
 import json
@@ -267,7 +266,6 @@ from django.views.generic import RedirectView
 
 IS_POPUP_VAR = '_popup'
 TO_FIELD_VAR = '_to_field'
-
 
 HORIZONTAL, VERTICAL = 1, 2
 
@@ -727,8 +725,8 @@ class BaseModelAdmin(metaclass=forms.MediaDefiningClass):
         codename_view = get_permission_codename('view', opts)
         codename_change = get_permission_codename('change', opts)
         return (
-            request.user.has_perm('%s.%s' % (opts.app_label, codename_view)) or
-            request.user.has_perm('%s.%s' % (opts.app_label, codename_change))
+                request.user.has_perm('%s.%s' % (opts.app_label, codename_view)) or
+                request.user.has_perm('%s.%s' % (opts.app_label, codename_change))
         )
 
     def has_view_or_change_permission(self, request, obj=None):
@@ -815,6 +813,7 @@ class ModelAdmin(BaseModelAdmin):
         def wrap(view):
             def wrapper(*args, **kwargs):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
+
             wrapper.model_admin = self
             return update_wrapper(wrapper, view)
 
@@ -1045,6 +1044,7 @@ class ModelAdmin(BaseModelAdmin):
         A list_display column containing a checkbox widget.
         """
         return helpers.checkbox.render(helpers.ACTION_CHECKBOX_NAME, str(obj.pk))
+
     action_checkbox.short_description = mark_safe('<input type="checkbox" id="action-toggle">')
 
     def _get_base_actions(self):
@@ -1183,6 +1183,7 @@ class ModelAdmin(BaseModelAdmin):
         Return a tuple containing a queryset to implement the search
         and a boolean indicating if the results may contain duplicates.
         """
+
         # Apply keyword searches.
         def construct_search(field_name):
             if field_name.startswith('^'):
@@ -1383,8 +1384,8 @@ class ModelAdmin(BaseModelAdmin):
                 'admin/%s/popup_response.html' % opts.app_label,
                 'admin/popup_response.html',
             ], {
-                'popup_response_data': popup_response_data,
-            })
+                                        'popup_response_data': popup_response_data,
+                                    })
 
         elif "_continue" in request.POST or (
                 # Redirecting after "Save as new".
@@ -1443,8 +1444,8 @@ class ModelAdmin(BaseModelAdmin):
                 'admin/%s/popup_response.html' % opts.app_label,
                 'admin/popup_response.html',
             ], {
-                'popup_response_data': popup_response_data,
-            })
+                                        'popup_response_data': popup_response_data,
+                                    })
 
         opts = self.model._meta
         preserved_filters = self.get_preserved_filters(request)
@@ -1606,8 +1607,8 @@ class ModelAdmin(BaseModelAdmin):
                 'admin/%s/popup_response.html' % opts.app_label,
                 'admin/popup_response.html',
             ], {
-                'popup_response_data': popup_response_data,
-            })
+                                        'popup_response_data': popup_response_data,
+                                    })
 
         self.message_user(
             request,
@@ -1934,9 +1935,9 @@ class ModelAdmin(BaseModelAdmin):
                         "%(count)s %(name)s were changed successfully.",
                         changecount
                     ) % {
-                        'count': changecount,
-                        'name': model_ngettext(opts, changecount),
-                    }
+                              'count': changecount,
+                              'name': model_ngettext(opts, changecount),
+                          }
                     self.message_user(request, msg, messages.SUCCESS)
 
                 return HttpResponseRedirect(request.get_full_path())
@@ -2132,8 +2133,8 @@ class ModelAdmin(BaseModelAdmin):
             def user_deleted_form(request, obj, formset, index):
                 """Return whether or not the user deleted the form."""
                 return (
-                    inline.has_delete_permission(request, obj) and
-                    '{}-{}-DELETE'.format(formset.prefix, index) in request.POST
+                        inline.has_delete_permission(request, obj) and
+                        '{}-{}-DELETE'.format(formset.prefix, index) in request.POST
                 )
 
             # Bypass validation of each view-only inline form (since the form's
@@ -2344,8 +2345,8 @@ class InlineModelAdmin(BaseModelAdmin):
                     opts = field.remote_field.model._meta
                     break
             return (
-                request.user.has_perm('%s.%s' % (opts.app_label, get_permission_codename('view', opts))) or
-                request.user.has_perm('%s.%s' % (opts.app_label, get_permission_codename('change', opts)))
+                    request.user.has_perm('%s.%s' % (opts.app_label, get_permission_codename('view', opts))) or
+                    request.user.has_perm('%s.%s' % (opts.app_label, get_permission_codename('change', opts)))
             )
         return super().has_view_permission(request)
 
@@ -2356,5 +2357,3 @@ class StackedInline(InlineModelAdmin):
 
 class TabularInline(InlineModelAdmin):
     template = 'admin/edit_inline/tabular.html'
-
-
