@@ -5,7 +5,7 @@ pipeline {
       // Get some code from a GitHub repository
       steps{
           withEnv(["HOME=${env.WORKSPACE}"]) {
-            git 'https://github.com/emethg/project16.git'
+           git branch: 'emethsp3', url: 'https://github.com/emethg/project16.git'
       }
       }
    }
