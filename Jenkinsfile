@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'python:3.7.2' } }
+    agent { docker { image 'python:3.6.8' } }
     stages {
     stage('Git') {
       // Get some code from a GitHub repository
@@ -13,7 +13,7 @@ pipeline {
    stage('Requirements'){
           steps{
               withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip3 install --user -U -r requirements.txt'
+                    sh 'pip3.6 install --user -U -r requirements.txt'
               }
           }
    }
