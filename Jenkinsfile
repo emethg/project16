@@ -45,12 +45,28 @@ pipeline {
 
     stage('Static code metrics') {
             steps {
-                echo "PEP8 style check"
+                echo "Code Coverage"
                 sh  ''' source activate ${BUILD_TAG}
-                        pylint --disable=C irisvmpy || true
+                        coverage run irisvmpy/iris.py 1 1 2 3
+                        python -m coverage xml -o ./reports/coverage.xml
                     '''
             }
-    }
+            post{
+                always{
+                    step([$class: 'CoberturaPublisher',
+                                   autoUpdateHealth: false,
+                                   autoUpdateStability: false,
+                                   coberturaReportFile: 'reports/coverage.xml',
+                                   failNoReports: false,
+                                   failUnhealthy: false,
+                                   failUnstable: false,
+                                   maxNumberOfBuilds: 10,
+                                   onlyStable: false,
+                                   sourceEncoding: 'ASCII',
+                                   zoomCoverageChart: false])
+                }
+            }
+        }
 
 
 }
