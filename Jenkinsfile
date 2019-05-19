@@ -13,7 +13,7 @@ pipeline {
    stage('Requirements'){
           steps{
               withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install --user -U -r requirements.txt'
+                    sh 'pip install --user -U -r **/*requirements.txt'
               }
           }
    }
