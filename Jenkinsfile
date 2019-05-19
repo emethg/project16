@@ -30,14 +30,14 @@ pipeline {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh"""
                     cd ${WORKSPACE}
-                    python manage.py test
+                    python manage.py test &
                     """
               }
           }
     }
     stage('Results') {
        steps{
-            junit allowEmptyResults: true, testResults: '**/*.xml'
+            junit allowEmptyResults: true, testResults: '*/mysite/.xml'
 
        }
     }
