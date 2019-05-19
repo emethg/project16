@@ -13,7 +13,7 @@ pipeline {
    stage('Requirements'){
           steps{
               withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install --user -U -r requirements.txt'
+                    sh 'pip3 install --user -U -r requirements.txt'
               }
           }
    }
@@ -35,8 +35,6 @@ pipeline {
               }
           }
     }
-
-
     stage('Results') {
        steps{
             junit allowEmptyResults: true, testResults: '**/*.xml'
