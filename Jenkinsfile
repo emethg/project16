@@ -4,7 +4,7 @@ pipeline {
     // First stage , get files from your GitHub repository.
     stage('Git'){
         steps{
-            checkout scm
+            git 'https://github.com/emethg/project16.git'
         }
     }
     stage('Requirements'){
@@ -16,7 +16,9 @@ pipeline {
     }
     stage('Run Tests') {
       steps {
-        sh 'python manage.py test'
+        withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'python manage.py test'
+        }
       }
       post {
         always {
