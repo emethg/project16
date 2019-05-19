@@ -43,28 +43,13 @@ pipeline {
     }
 
 
-    stage('Style'){
-        steps{
-            withEnv(["HOME=${env.WORKSPACE}"]){
-                sh """
-                make flake8 | tee report/flake8.log || true
-                make pylint | tee report/pylint.log || true
-                """
-                step([$class: 'WarningsPublisher',
-                  parserConfigurations: [[
-                    parserName: 'Pep8',
-                    pattern: 'report/flake8.log'
-                  ],
-                  [
-                    parserName: 'pylint',
-                    pattern: 'report/pylint.log'
-                  ]],
-                  unstableTotalAll: '0',
-                  usePreviousBuildAsReference: true
-                ])
-
+    stage('Static code metrics') {
+            steps {
+                echo "PEP8 style check"
+                sh  ''' source activate ${BUILD_TAG}
+                        pylint --disable=C irisvmpy || true
+                    '''
             }
-        }
     }
 
 
