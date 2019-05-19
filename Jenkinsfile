@@ -43,14 +43,19 @@ pipeline {
     }
 
 
-    stage('Static code metrics') {
+    stage('Integration tests') {
             steps {
-                echo "Raw metrics"
                 sh  ''' 
-                        radon raw --json irisvmpy/ > raw_report.json
-                        radon cc --json irisvmpy/ > cc_report.json
-                        radon mi --json irisvmpy/ > mi_report.json
+                        behave -f=formatters.cucumber_json:PrettyCucumberJSONFormatter -o ./reports/integration.json
                     '''
+            }
+            post {
+                always {
+                    cucumber (fileIncludePattern: '**/*.json',
+                              jsonReportDirectory: './reports/',
+                              parallelTesting: true,
+                              sortingMethod: 'ALPHABETICAL')
+                }
             }
         }
 
