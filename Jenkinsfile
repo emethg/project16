@@ -8,6 +8,13 @@ pipeline {
             checkout scm
         }
     }
+    stage('Requirements'){
+        steps{
+            withEnv(["HOME=${env.WORKSPACE}"]) {
+                sh 'pip3 install --user -r requirements.txt'
+            }
+        }
+    }
     stage('build') {
       steps {
         sh 'pip install --user --no-cache-dir -r requirements.txt'
