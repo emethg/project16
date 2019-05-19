@@ -11,7 +11,7 @@ from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-# ijdiwhdiw
+# 
 from webpush import send_user_notification
 
 import json
