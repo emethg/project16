@@ -43,5 +43,17 @@ pipeline {
     }
 
 
+    stage('Style'){
+        steps{
+            withEnv(["HOME=${env.WORKSPACE}"]){
+                sh """
+                make flake8 | tee report/flake8.log || true
+                make pylint | tee report/pylint.log || true
+                """
+            }
+        }
+    }
+
+
 }
 }
