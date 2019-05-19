@@ -15,14 +15,10 @@ pipeline {
             }
         }
     }
-    stage('build') {
+
+    stage('Run Tests') {
       steps {
-        sh 'pip install --user --no-cache-dir -r requirements.txt'
-      }
-    }
-    stage('test') {
-      steps {
-        sh 'python tests.py'
+        sh 'python manage.py test'
       }
       post {
         always {
