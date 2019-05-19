@@ -14,7 +14,6 @@ Django==2.1.7
 django-crispy-forms==1.7.2
 django-webpush==0.2.7
 entrypoints==0.3
-flake8==3.7.7
 http-ece==1.1.0
 idna==2.8
 isort==4.3.20
@@ -27,7 +26,6 @@ pycodestyle==2.5.0
 pycparser==2.19
 pyflakes==2.1.1
 PyJWT==1.7.1
-pylint==2.3.1
 python-social-auth==0.3.6
 python3-openid==3.1.0
 pytz==2018.9
