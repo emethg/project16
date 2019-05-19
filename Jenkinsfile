@@ -1,6 +1,5 @@
 pipeline {
   agent { docker { image 'python:3.7.2' } }
-  environment {HOME = '/tmp'}
   stages {
     // First stage , get files from your GitHub repository.
     stage('Git'){
@@ -8,7 +7,13 @@ pipeline {
             checkout scm
         }
     }
-
+    stage('Requirements'){
+        steps{
+            withEnv(["HOME=${env.WORKSPACE}"]) {
+                sh 'pip3 install --user -r requirements.txt'
+            }
+        }
+    }
     stage('Run Tests') {
       steps {
         sh 'python manage.py test'
