@@ -43,16 +43,16 @@ pipeline {
     }
 
 
-    stage('Style'){
-        steps{
-            withEnv(["HOME=${env.WORKSPACE}"]){
-                sh """
-                make flake8 | tee report/flake8.log || true
-                make pylint | tee report/pylint.log || true
-                """
+    stage('Static code metrics') {
+            steps {
+                echo "Raw metrics"
+                sh  ''' source activate ${BUILD_TAG}
+                        radon raw --json irisvmpy/ > raw_report.json
+                        radon cc --json irisvmpy/ > cc_report.json
+                        radon mi --json irisvmpy/ > mi_report.json
+                    '''
             }
         }
-    }
 
 
 }
