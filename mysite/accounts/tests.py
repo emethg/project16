@@ -335,10 +335,11 @@ class SportActivityNotfication(TestCase):
                          SportActivity.objects.get(activity_name='Football').activity_name)
 
 
-class Todo(TestCase):
+class TodoTest(TestCase):
     def setUp(self):
         userc = User.objects.create_user(username='testuser', password='A123456b')
         self.client.login(username='testuser', password='A123456b')
+        Todo.objects.create(text="test todo", user=User.objects.get(username='testuser'))
 
     def test_form_valid(self):
         form_data = {'text': 'This is a todo test'}
@@ -348,8 +349,8 @@ class Todo(TestCase):
     def test_add(self):
         response = self.client.post("/todo/", {'text': 'test todo'})
         self.assertEqual(response.status_code, 200)
-        
-
+        print(response)
+        self.assertEqual(Todo.objects.get(text='test todo', user=User.objects.get(username='testuser')).text, 'test todo')
 
 
 
