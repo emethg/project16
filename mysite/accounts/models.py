@@ -68,7 +68,8 @@ class TipStudy(models.Model):
 
 class SportActivityNotification(models.Model):
     activity_name = models.CharField(max_length=50, default='')
-    link = models.ForeignKey(User, related_name='sportactivitynotifications', on_delete=models.CASCADE )
+    link = models.ForeignKey(User, related_name='sportactivitynotifications',
+                             on_delete=models.CASCADE)
 
     def __str__(self):
         return self.activity_name

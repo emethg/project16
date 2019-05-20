@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from .forms import RegistrationForm, ProductForm
 from django.contrib.auth.forms import PasswordChangeForm
-from .models import Product, Dish, SportActivity, TipStudy
+from .models import Product, Dish, SportActivity, TipStudy, SportActivityNotification
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -312,3 +312,22 @@ class DeleteUserTest(TestCase):
         User.objects.get(id=1).delete()
         with self.assertRaises(ObjectDoesNotExist):
             User.objects.get(id=1)
+
+
+class SportActivityNotfication(TestCase):
+
+    def setUp(self):
+        userc = User.objects.create_user(username='testuser', password='A123456b')
+        SportActivity.objects.create(activity_name='Football',
+                                                      description='This is Test',
+                                                      time=datetime.timedelta(minutes=40))
+
+        SportActivityNotification.objects.create(activity_name='Football', link=userc)
+
+    def test_link(self):
+        self.assertEqual('testuser', User.objects.get(username='testuser').username)
+
+    def test_activity(self):
+        user = User.objects.get(username='testuser')
+        self.assertEqual(SportActivityNotification.objects.get(activity_name='Football', link=user).activity_name,
+                         SportActivity.objects.get(activity_name='Football').activity_name)
