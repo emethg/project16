@@ -1,4 +1,6 @@
 from django.contrib import admin
+from typing import Any
+
 from .models import UserProfile
 from .models import Dish
 from .models import Tip
