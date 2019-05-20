@@ -134,3 +134,7 @@ def information(request, name):
     args = {'data': data}
     return render(request, 'accounts/information.html', args)
 
+def todo(request):
+    args = {}
+    return render(request, 'accounts/todo.html', args)
+

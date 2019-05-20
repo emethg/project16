@@ -19,4 +19,5 @@ urlpatterns = [
     path('profile/click', views.activate_notification, name='activate_notification'),
     path('profile/list_activity', views.list_activity_log, name='list_activity_log'),
     path('profile/<name>', views.information, name='information'),
+    path('todo/', views.todo, name='todo')
 ]
