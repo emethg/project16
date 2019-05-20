@@ -147,7 +147,6 @@ def todo(request):
     return render(request, 'accounts/todo.html', args)
 
 
-@login_required
 @require_POST
 def addTodo(request):
     form = TodoForm(request.POST)
@@ -157,6 +156,7 @@ def addTodo(request):
         new_todo = Todo(text=request.POST['text'], user=user)
         new_todo.save()
     return redirect('todo')
+
 
 def completeTodo(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
@@ -168,6 +168,7 @@ def completeTodo(request, todo_id):
 def deleteCompleted(request):
     Todo.objects.filter(complete__exact=True).delete()
     return redirect('todo')
+
 
 def deleteAdd(request):
     Todo.objects.all().delete()

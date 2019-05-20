@@ -7,6 +7,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from .models import Product, Dish, SportActivity, TipStudy, SportActivityNotification
 from django.contrib.admin.sites import AdminSite
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import TodoForm
+from .models import Todo
 
 
 # Create your tests here.
@@ -331,3 +333,26 @@ class SportActivityNotfication(TestCase):
         user = User.objects.get(username='testuser')
         self.assertEqual(SportActivityNotification.objects.get(activity_name='Football', link=user).activity_name,
                          SportActivity.objects.get(activity_name='Football').activity_name)
+
+
+class Todo(TestCase):
+    def setUp(self):
+        userc = User.objects.create_user(username='testuser', password='A123456b')
+        self.client.login(username='testuser', password='A123456b')
+
+    def test_form_valid(self):
+        form_data = {'text': 'This is a todo test'}
+        form = TodoForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_add(self):
+        response = self.client.post("/todo/", {'text': 'test todo'})
+        self.assertEqual(response.status_code, 200)
+        
+
+
+
+
+
+
+

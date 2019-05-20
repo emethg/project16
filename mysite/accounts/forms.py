@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.forms import ModelForm
-from .models import Product
+from .models import Product, Todo
 
 
 class RegistrationForm(UserCreationForm):
@@ -59,6 +59,11 @@ class ProductForm(ModelForm):
 
 
 class TodoForm(forms.Form):
+
+    class Meta:
+        model = Todo
+        fields = ['text']
+
     text = forms.CharField(max_length=40, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder' : 'Enter todo e.g. Delete junk files', 'aria-label':'Todo', 'aria-describedby': 'add-btn'}
     ))
