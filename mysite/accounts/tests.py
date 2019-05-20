@@ -352,6 +352,11 @@ class TodoTest(TestCase):
         print(response)
         self.assertEqual(Todo.objects.get(text='test todo', user=User.objects.get(username='testuser')).text, 'test todo')
 
+    def test_delete(self):
+        Todo.objects.get(text='test todo', user=User.objects.get(username='testuser')).delete()
+        with self.assertRaises(ObjectDoesNotExist):
+            Todo.objects.get(text='test todo', user=User.objects.get(username='testuser'))
+
 
 
 
