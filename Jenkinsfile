@@ -43,22 +43,39 @@ pipeline {
     }
 
 
-    stage('Integration tests') {
+    stage('PEP8 style check') {
             steps {
-                sh  ''' 
-                        behave -f=formatters.cucumber_json:PrettyCucumberJSONFormatter -o ./reports/integration.json
+                echo "PEP8 style check"
+                sh  ''' source activate ${BUILD_TAG}
+                        pylint --disable=C irisvmpy || true
                     '''
-            }
-            post {
-                always {
-                    cucumber (fileIncludePattern: '**/*.json',
-                              jsonReportDirectory: './reports/',
-                              parallelTesting: true,
-                              sortingMethod: 'ALPHABETICAL')
-                }
             }
         }
 
+    stage('Code Coverage') {
+            steps {
+                echo "Code Coverage"
+                sh  ''' source activate ${BUILD_TAG}
+                        coverage run irisvmpy/iris.py 1 1 2 3
+                        python -m coverage xml -o ./reports/coverage.xml
+                    '''
+            }
+            post{
+                always{
+                    step([$class: 'CoberturaPublisher',
+                                   autoUpdateHealth: false,
+                                   autoUpdateStability: false,
+                                   coberturaReportFile: 'reports/coverage.xml',
+                                   failNoReports: false,
+                                   failUnhealthy: false,
+                                   failUnstable: false,
+                                   maxNumberOfBuilds: 10,
+                                   onlyStable: false,
+                                   sourceEncoding: 'ASCII',
+                                   zoomCoverageChart: false])
+                }
+            }
+        }
 
 }
 }
