@@ -158,6 +158,19 @@ def addTodo(request):
         new_todo.save()
     return redirect('todo')
 
+def completeTodo(request, todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    todo.complete = True
+    todo.save()
+    return redirect('todo')
 
+
+def deleteCompleted(request):
+    Todo.objects.filter(complete__exact=True).delete()
+    return redirect('todo')
+
+def deleteAdd(request):
+    Todo.objects.all().delete()
+    return redirect('todo')
 
 
