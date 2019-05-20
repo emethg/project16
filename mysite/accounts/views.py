@@ -14,6 +14,9 @@ from django.contrib.auth.models import User
 # hello
 from webpush import send_user_notification
 
+from .models import Todo
+from .forms import TodoForm
+
 import json
 
 from celery.schedules import crontab
@@ -107,8 +110,9 @@ def activate_notification(request):
     profile = request.user.userprofile
     profile.notification = True
     profile.save()
-    #if profile.notification == 'true':
+    # if profile.notification == 'true':
     return HttpResponse(profile.notification)
+
 
 '''
     if not profile.notification:
@@ -130,11 +134,30 @@ def list_activity_log(request):
 
 
 def information(request, name):
-    data = SportActivity.objects.get(activity_name = name)
+    data = SportActivity.objects.get(activity_name=name)
     args = {'data': data}
     return render(request, 'accounts/information.html', args)
 
+
 def todo(request):
-    args = {}
+    user = request.user
+    todo_list = Todo.objects.filter(user=user).order_by('id')
+    form = TodoForm()
+    args = {'todo_list': todo_list, 'form': form}
     return render(request, 'accounts/todo.html', args)
+
+
+@login_required
+@require_POST
+def addTodo(request):
+    form = TodoForm(request.POST)
+    print(request.POST['text'])
+    if form.is_valid():
+        user = request.user
+        new_todo = Todo(text=request.POST['text'], user=user)
+        new_todo.save()
+    return redirect('todo')
+
+
+
 
