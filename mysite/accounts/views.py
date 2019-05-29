@@ -174,4 +174,7 @@ def deleteAdd(request):
     Todo.objects.all().delete()
     return redirect('todo')
 
+def test(request):
+    return render(request, 'accounts/log_test.html')
+
 
