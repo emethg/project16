@@ -301,28 +301,29 @@
 
     <section id="login" class="login">
             <div class='login--wrap clearfix'>
+                    
                     <div class="row clearfix">
+                    <form class="login" method="post">
+                            {% csrf_token %}
                       <div class="col col-6 login--l">
                         <div class="title"><span class='text'>Signin</span></div>
                         <div class='login--body'>
-                          <label>
-                            <div class='label'>Email address</div>
-                            <input type='text' placeholder='sree@company.com' required />
-                          </label>
-                          <label>
-                            <div class='label'>Password</div>
-                            <input type='password' placeholder='*********' required />
-                          </label>
-                          <div class='sbmt'>
-                            <button class='sbmt--btn'>Signin</button>
-                          </div>
+                            <label>
+                                <div class='label'>Email address</div>
+                                <input type='text' placeholder='sree@company.com' required />
+                            </label>
+                            <label>
+                                <div class='label'>Password</div>
+                                <input type='password' name="password" placeholder='*********' required />
+                            </label>
+                            <div class='sbmt'>
+                                <button class='sbmt--btn'>Signin</button>
+                            </div>
+                            
                         </div>
-              
-                        <form>
-                          <input type="button" class='or' value="H" onclick="window.location.href='#' " />
-                        </form>
                         
                       </div>
+                      </form>
                       <div class="col col-6 login--s">
                         <div class="title"><span class='text'>Signup</span></div>
                         <div class='login--body'>

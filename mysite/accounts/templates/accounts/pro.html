@@ -1,0 +1,86 @@
+{% extends 'accounts/profile_test.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+{% endblock %}
+
+{%block content %}
+<div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">User Profile</h3>
+            </div>
+       <!-- Panel-Body -->   
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-12 col-md-3 col-lg-3" align="center">
+                  <img src="https://i.redd.it/5el0ahv4l5hz.jpg" class="img-responsive img-rounded" alt="User image">
+                </div><!-- /.col-xs-12 -->
+        <!-- User Information -->
+                <div class="col-xs-12 col-md-5 col-lg-5">  
+                  <h3>Elsa  Arendelle</h3>
+                  <h4>Queen of Arendelle</h4>
+                  <div class="table-responsive">
+                    <table class="table table-responsive table-user-information">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <strong>
+                              <span class="glyphicon glyphicon-home"></span>
+                            </strong>
+                          </td>
+                          <td class="text-primary">
+                            Arendelle, Norway
+                          </td>
+                        </tr><!--/home -->
+                        <tr>
+                           <td>
+                            <strong>
+                              <span class="glyphicon glyphicon-envelope"></span>
+                            </strong>
+                          </td>
+                          <td class="text-primary">
+                            ElsaArendelle@gmail.com
+                          </td>
+                        </tr><!--/email -->
+                                     
+                      </tbody>
+                    </table>
+                    </div> <!-- /.table-responsive -->
+        <!-- Social Buttons -->
+                    <div class="button-group">
+                      <button class="btn">
+                         <a href="#" class="social-icon si-border si-github si-border-round">
+                       <i class="fa fa-github"></i></a></button>
+            <button class="btn"><a href="#" class="social-icon si-border si-g-plus si-border-round">
+                      <i class="fa fa-google-plus"></i>             
+                  </a></button>
+                      <button class="btn"><a href="#" class="social-icon si-border si-linkedin si-border-round">
+                      <i class="fa fa-linkedin"></i>             
+                  </a></button>
+              <button class="btn"><a href="#" class="social-icon si-border si-facebook si-border-round">
+                      <i class="fa fa-facebook"></i>             
+                  </a></button>
+            
+        </div><!-- /.button-group -->
+                   
+                </div><!-- /.col-xs-12 -->
+              </div><!-- /.row -->
+            </div><!-- /.panel-body -->
+       <!-- Panel-Footer -->
+            <div class="panel-footer">
+              <h5 class="pull-left">&copy; Practice makes perfect</h5>
+              <div class="pull-right">
+                                  <a href="#" data-original-title="Follow" data-toggle="tooltip" type="button" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-heart"></i></a>
+                                  <a data-original-title="Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-pencil"></i></a>
+                              </div>
+            </div>
+          </div><!-- /.panel panel-info -->
+      </div><!-- /.container -->
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+      <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
+{% endblock %}

@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     website = models.URLField(default='')
     phone = models.IntegerField(default=0)
     notification = models.BooleanField(default=False)
+    allergy = models.ManyToManyField("Aliment")
 
     def __str__(self):
         return self.user.username
@@ -36,6 +37,7 @@ post_save.connect(create_profile, sender=User)
 class Dish(models.Model):
     name = models.CharField(max_length=100, default='')
     description = models.CharField(max_length=100, default='')
+    ingredients = models.ManyToManyField("Aliment")
 
     def __str__(self):
         return self.name
@@ -85,4 +87,8 @@ class Todo(models.Model):
         return self.text
 
 
+class Aliment(models.Model):
+    aliment = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.aliment

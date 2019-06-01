@@ -9,10 +9,12 @@ from django.db import router
 from django.db.models.deletion import Collector
 
 from .models import UserProfile, Product, User, TipStudy
-from .models import UserProfile, SportActivity, SportActivityNotification, Todo
+from .models import UserProfile, SportActivity, SportActivityNotification, Todo, Aliment
 
 admin.site.register(SportActivityNotification)
 admin.site.register(Todo)
+
+admin.site.register(Aliment)
 
 
 class SportActivityAdmin(admin.ModelAdmin):

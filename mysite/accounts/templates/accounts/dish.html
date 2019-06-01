@@ -1,5 +1,7 @@
 {% extends 'accounts/profile_test.html' %}
 
+
+
 {% block content %}
 <div class="container">
 
@@ -10,15 +12,17 @@
                 
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
-                        {{e.name_product }}</h4>
+                        {{e}}</h4>
+                    <ul>
+                 
                     <p class="group inner list-group-item-text">
-                        {{e.description}}</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                {{e.price}}$</p>
-                        </div>
-                    </div>
+                            {% for aliment in e.ingredients.all %}
+                            <ul><li>{{aliment}}</li></ul>
+                            {% endfor %}</p>
+                            
+                    </ul>
+    
+                    
                 </div>
             </div>
         </div>

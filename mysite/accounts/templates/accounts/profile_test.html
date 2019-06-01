@@ -1,0 +1,112 @@
+    <!-- Required meta tags -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    {% load static %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'profile_test/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{% static 'profile_test/script.js' %}"></script>
+    {% block head %}
+    <title>Hello, world!</title>
+    {% endblock %}
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+<body>
+    <div id="wrapper">
+        
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation" style="float: left;">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'view_profile' %}">Profile</a>
+                </li>
+                <li>
+                    <a href="{% url 'todo' %}">TODO APP</a>
+                </li>
+                <li>
+                    <a href="{% url 'dishes' %}">Dished</a>
+                </li>
+                <li>
+                    <a href="{% url 'list_items' %}">Item</a>
+                </li>
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Submanu title <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">Submanu 1</a></li>
+                    <li><a href="#">Submanu 2</a></li>
+                    <li><a href="#">Submanu 3</a></li>
+                    <li><a href="#">Submanu 4</a></li>
+                    <li><a href="#">Submanu 5</a></li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+        
+    </div>
+    
+    <!-- Page Content -->
+    
+            <!--<button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button> -->
+        <button type="button" class="btn btn-lg custom-btn" data-toggle="offcanvas" style="float: left;">
+            <i class="fa fa-bars"></i>
+        </button>            
+    
+        
+    <div class="content">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+        <!-- /#page-content-wrapper -->
+
+    
+    <!-- /#wrapper -->
+    
+   
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function () {
+ 
+        $('[data-toggle="offcanvas"]').click(function () {
+            
+            $('#wrapper').toggleClass('toggled');   
+        });  
+      });
+
+    $(document).ready(function () {
+        $('[class="content"]').click(function(){
+            $('#wrapper').not(this).removeClass('toggled');
+            
+            
+        });
+    });
+    </script>
+</body>

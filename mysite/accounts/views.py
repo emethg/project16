@@ -12,15 +12,15 @@ from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 # hello
-from webpush import send_user_notification
+# from webpush import send_user_notification
 
-from .models import Todo
+from .models import Todo, Dish
 from .forms import TodoForm
 
 import json
 
-from celery.schedules import crontab
-from celery.task import periodic_task
+#from celery.schedules import crontab
+#from celery.task import periodic_task
 
 
 def home(request):
@@ -43,7 +43,7 @@ def register(request):
 @login_required()
 def view_profile(request):
     args = {'user': request.user}
-    return render(request, 'accounts/profile.html', args)
+    return render(request, 'accounts/pro.html', args)
 
 
 @login_required()
@@ -83,7 +83,7 @@ def change_password(request):
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
 
-
+'''
 @periodic_task(run_every=crontab())
 def send_push(request):
     profile = request.user.get_profile()
@@ -103,7 +103,7 @@ def send_push(request):
             return JsonResponse(status=200, data={"message": "Web push successful"})
         except TypeError:
             return JsonResponse(status=500, data={"message": "An error occurred"})
-
+'''
 
 def activate_notification(request):
     print('Hey comment tu vas')
@@ -177,4 +177,14 @@ def deleteAdd(request):
 def test(request):
     return render(request, 'accounts/log_test.html')
 
+def test_new(request):
+    return render(request, 'accounts/profile_test.html')
 
+def dishes(request):
+    data = Dish.objects.all()
+    for e in data:
+        print(e)
+        for i in e.ingredients.all():
+            print(i)
+    args = {'data' : data}
+    return render(request, 'accounts/dish.html', args)
