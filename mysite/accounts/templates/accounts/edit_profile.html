@@ -1,10 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'accounts/profile_test.html' %}
 
-{% block head %}
-<title>Profile Change</title>
-{% endblock %}
 
-{% block body %}
+{% block content %}
 <div class="container">
     <form method="post">
         {% csrf_token %}

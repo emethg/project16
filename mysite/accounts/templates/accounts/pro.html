@@ -1,4 +1,5 @@
 {% extends 'accounts/profile_test.html' %}
+{% load crispy_forms_tags %}
 
 {% block head %}
     {% load static %}
@@ -20,51 +21,28 @@
                 </div><!-- /.col-xs-12 -->
         <!-- User Information -->
                 <div class="col-xs-12 col-md-5 col-lg-5">  
-                  <h3>Elsa  Arendelle</h3>
-                  <h4>Queen of Arendelle</h4>
+                  <h3>{{user.first_name}}</h3>
+                  <h4>{{user.last_name}}</h4>
+                  <form method='POST'>
+                    {% csrf_token %}
                   <div class="table-responsive">
+
                     <table class="table table-responsive table-user-information">
                       <tbody>
                         <tr>
-                          <td>
-                            <strong>
-                              <span class="glyphicon glyphicon-home"></span>
-                            </strong>
-                          </td>
                           <td class="text-primary">
-                            Arendelle, Norway
+                            {{ u_form|crispy}}
+                            {{ p_form|crispy}}
                           </td>
                         </tr><!--/home -->
-                        <tr>
-                           <td>
-                            <strong>
-                              <span class="glyphicon glyphicon-envelope"></span>
-                            </strong>
-                          </td>
-                          <td class="text-primary">
-                            ElsaArendelle@gmail.com
-                          </td>
-                        </tr><!--/email -->
                                      
                       </tbody>
                     </table>
                     </div> <!-- /.table-responsive -->
-        <!-- Social Buttons -->
-                    <div class="button-group">
-                      <button class="btn">
-                         <a href="#" class="social-icon si-border si-github si-border-round">
-                       <i class="fa fa-github"></i></a></button>
-            <button class="btn"><a href="#" class="social-icon si-border si-g-plus si-border-round">
-                      <i class="fa fa-google-plus"></i>             
-                  </a></button>
-                      <button class="btn"><a href="#" class="social-icon si-border si-linkedin si-border-round">
-                      <i class="fa fa-linkedin"></i>             
-                  </a></button>
-              <button class="btn"><a href="#" class="social-icon si-border si-facebook si-border-round">
-                      <i class="fa fa-facebook"></i>             
-                  </a></button>
-            
-        </div><!-- /.button-group -->
+                    <div class='form-group'>
+                      <button class=btn btn-outline-info type="submit">Update</button>
+                    </div>
+                  </form>
                    
                 </div><!-- /.col-xs-12 -->
               </div><!-- /.row -->

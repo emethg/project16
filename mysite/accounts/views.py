@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 # from webpush import send_user_notification
 
 from .models import Todo, Dish
-from .forms import TodoForm
+from .forms import TodoForm, UserUpdateForm, ProfileUpdateForm
 
 import json
 
@@ -42,8 +42,25 @@ def register(request):
 
 @login_required()
 def view_profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, 
+                                    request.FILES,
+                                    instance=request.user.userprofile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            return redirect('/accounts/profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.userprofile)
     args = {'user': request.user}
-    return render(request, 'accounts/pro.html', args)
+    context = {
+        'u_form' : u_form,
+        'p_form' : p_form,
+        'user': request.user
+    }
+    return render(request, 'accounts/pro.html', context)
 
 
 @login_required()
@@ -59,12 +76,12 @@ def view_items(request):
 
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = UserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
         return redirect('/accounts/profile')
     else:
-        form = EditProfileForm(instance=request.user)
+        form = UserChangeForm(instance=request.user)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
 

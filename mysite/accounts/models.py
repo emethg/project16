@@ -11,7 +11,7 @@ class UserProfile(models.Model):
     website = models.URLField(default='')
     phone = models.IntegerField(default=0)
     notification = models.BooleanField(default=False)
-    allergy = models.ManyToManyField("Aliment")
+    ingredients = models.ManyToManyField("Aliment")
 
     def __str__(self):
         return self.user.username
