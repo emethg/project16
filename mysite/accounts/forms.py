@@ -37,6 +37,7 @@ class EditProfileForm(UserChangeForm):
             'first_name',
             'last_name',
             'password'
+
         )
 
 class UserUpdateForm(forms.ModelForm):

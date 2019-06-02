@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Remark for jira integration
 import os
+import django
 import sys
 
 if __name__ == '__main__':
