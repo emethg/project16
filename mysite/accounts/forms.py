@@ -87,4 +87,10 @@ class TodoForm(forms.Form):
         attrs={'class': 'form-control', 'placeholder' : 'Enter todo e.g. Delete junk files', 'aria-label':'Todo', 'aria-describedby': 'add-btn'}
     ))
 
+class MailForm(forms.Form):
+
+    from_u = forms.CharField(max_length=40)
+    message = forms.CharField(max_length=100)
+
+
 

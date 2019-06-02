@@ -15,7 +15,9 @@ from django.contrib.auth.models import User
 # from webpush import send_user_notification
 
 from .models import Todo, Dish
-from .forms import TodoForm, UserUpdateForm, ProfileUpdateForm
+from .forms import TodoForm, UserUpdateForm, ProfileUpdateForm, MailForm
+
+from django.core.mail import send_mail
 
 import json
 
@@ -24,7 +26,20 @@ import json
 
 
 def home(request):
-    return render(request, 'accounts/home.html')
+    if request.method == 'POST':
+        form = MailForm(request.POST)
+        if form.is_valid():
+            from_u = form.cleaned_data.get('from_u')
+            print(from_u)
+            message = form.cleaned_data.get('message')
+            print(message)
+            send_mail('Subject here', message, from_u, ['adming16@sce.com'], fail_silently=False)
+            return HttpResponse('success')
+    else:
+        print('pass here')
+        form = MailForm()
+        args = {'form': form}
+        return render(request, 'accounts/home.html', args)
 
 
 def register(request):
@@ -32,7 +47,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/accounts')
+            return redirect('/accounts/profile')
     else:
         form = RegistrationForm()
         args = {'form': form}
@@ -205,3 +220,11 @@ def dishes(request):
                     data = data.exclude(id=e.id)     
     args = {'data' : data}
     return render(request, 'accounts/dish.html', args)
+
+def send_email(request):
+    if request.method == 'POST':
+        form = MailForm(request.POST)
+        if form.is_valid():
+            from_u = form.cleaned_data.get('from_u')
+            message = form.cleaned_data.get('message')
+            send_mail('Subject here', message, from_u, ['to@example.com'], fail_silently=False)
