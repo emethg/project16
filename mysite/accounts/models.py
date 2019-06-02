@@ -8,10 +8,10 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     description = models.CharField(max_length=100, default='')
     city = models.CharField(max_length=100, default='')
-    website = models.URLField(default='')
+    website = models.URLField(default='', null=True, blank=True)
     phone = models.IntegerField(default=0)
     notification = models.BooleanField(default=False)
-    ingredients = models.ManyToManyField("Aliment")
+    ingredients = models.ManyToManyField("Aliment", null=True, blank=True)
 
     def __str__(self):
         return self.user.username
