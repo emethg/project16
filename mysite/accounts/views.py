@@ -35,7 +35,6 @@ def register(request):
             return redirect('/accounts')
     else:
         form = RegistrationForm()
-
         args = {'form': form}
         return render(request, 'accounts/reg_form.html', args)
 
@@ -199,9 +198,10 @@ def test_new(request):
 
 def dishes(request):
     data = Dish.objects.all()
-    for e in data:
-        print(e)
-        for i in e.ingredients.all():
-            print(i)
+    for j in request.user.userprofile.ingredients.all():
+        for e in data:
+            for i in e.ingredients.all():
+                if(i == j):
+                    data = data.exclude(id=e.id)     
     args = {'data' : data}
     return render(request, 'accounts/dish.html', args)
