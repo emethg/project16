@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'webpush',
     'accounts',
     'crispy_forms',
     'django.contrib.admin',

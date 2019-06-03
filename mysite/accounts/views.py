@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 # hello
 # from webpush import send_user_notification
 
-from .models import Todo, Dish
+from .models import Todo, Dish, Tip
 from .forms import TodoForm, UserUpdateForm, ProfileUpdateForm, MailForm
 
 from django.core.mail import send_mail
@@ -220,6 +220,16 @@ def dishes(request):
                     data = data.exclude(id=e.id)     
     args = {'data' : data}
     return render(request, 'accounts/dish.html', args)
+
+def Tip(request):
+    data = Tip.objects.all()
+    for j in request.user.userprofile.ingredients.all():
+        for e in data:
+            for i in e.ingredients.all():
+                if(i == j):
+                    data = data.exclude(id=e.id)
+    args = {'data' : data}
+    return render(request, 'accounts/Tip.html', args)
 
 def send_email(request):
     if request.method == 'POST':

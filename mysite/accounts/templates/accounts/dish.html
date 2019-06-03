@@ -3,30 +3,31 @@
 
 
 {% block content %}
-<div class="container">
+    <div class="container">
+    <div id="menuDish" class="tab-pane">
 
-    <div id="products" class="row list-group">
-        {% for e in data %}
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        {{e}}</h4>
-                    <ul>
-                 
-                    <p class="group inner list-group-item-text">
-                            {% for aliment in e.ingredients.all %}
-                            <ul><li>{{aliment}}</li></ul>
-                            {% endfor %}</p>
-                            
+                    <p>Breakfast:</p>
+                    <ul class="list">
+                        <li id="Eggs">Eggs</li>
+                        <li id="Leafy Greens">Leafy Greens</li>
+                        <li id="Vegetables">Vegetables</li>
+                        <li id="Tuna">Tuna</li>
                     </ul>
-    
-                    
-                </div>
-            </div>
+
+                    <p>Lunch:</p>
+                    <ul class="list">
+                        <li id="Boiled Potatoes">Boiled Potatoes</li>
+                        <li id="Salomon">Salomon</li>
+                        <li id="Beans and Legumes">Beans and Legumes</li>
+                        <li id="Rise with Meat">Rise with Meat</li>
+                    </ul>
+                    <p>Dinner:</p>
+                    <ul class="list">
+                        <li id="Salat">Salat</li>
+                        <li id="Omlette">Omlette</li>
+                        <li id="Milk with cornflakes">Milk with cornflakes</li>
+                        <li id="Delicacies">Delicacies</li>
+                    </ul>
         </div>
-        {% endfor %}
     </div>
-</div>
 {% endblock %}
