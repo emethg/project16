@@ -1,0 +1,52 @@
+{% extends 'accounts/profile_test.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="container">
+    <div id="sportTips" class="tab-pane">
+
+    <div id="products" class="row list-group">
+        {% for e in data %}
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{e}}</h4>
+
+
+                    <p class="group inner list-group-item-text">
+                            {% for tip in e.tips.all %}
+                            <ul><li>{{tip}}</li></ul>
+                            {% endfor %}
+                    </p>
+
+                    <p>Easy:</p>
+                    <ul class="list">
+                        <li id="stairs">Take the stairs instand of the elevator when you go to school</li>
+                        <li id="walkseasy">Walks at least 30 minutes every day</li>
+
+                    </ul>
+
+                    <p>Moderate:</p>
+                    <ul class="list">
+                        <li id="walksmoderate">Walks at least one hour every day</li>
+                        <li id="practicemoderate">Practice at least twice a week </li>
+                        <li id="Bike">Ride a bike to go to school twice a week </li>
+                    </ul>
+                    <p>Hard:</p>
+                    <ul class="list">
+                        <li id="practicehard">Practice every two days</li>
+                        <li id="bikehard">Ride a bike to go to school every day</li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
